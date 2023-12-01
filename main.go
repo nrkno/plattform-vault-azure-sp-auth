@@ -1,7 +1,6 @@
 package GetCreds
 
 import (
-	"fmt"
 	"log/syslog"
 	"os"
 
@@ -9,10 +8,10 @@ import (
 	"github.com/nrkno/plattform-vault-azure-sp-auth/models"
 )
 
-func GetCreds(VAULT_ADDR string, VAULT_AZURE_CONFIG_PATH string) *models.AzureCredentials {
+func GetCreds(VAULT_ADDR string, VAULT_AZURE_CONFIG_PATH string) (*models.AzureCredentials, error) {
 	log, err := syslog.New(syslog.LOG_INFO|syslog.LOG_USER, os.Args[0])
 	if err != nil {
-		os.Exit(1)
+		return nil, err
 	}
 	defer log.Close()
 
@@ -21,13 +20,13 @@ func GetCreds(VAULT_ADDR string, VAULT_AZURE_CONFIG_PATH string) *models.AzureCr
 	conf, err = config.ReadVaultPath[models.AzureConfig](VAULT_ADDR, VAULT_AZURE_CONFIG_PATH,
 		&config.ReadVaultPathOptions{Logger: log})
 	if err != nil {
-		log.Err(err.Error())
+		return nil, err
 	}
 	spCred, err := config.ReadVaultPath[models.AzureCredentials](VAULT_ADDR, conf.ServicePrincipalPath,
 		&config.ReadVaultPathOptions{Logger: log})
 	if err != nil {
-		fmt.Println("something")
+		return nil, err
 	}
 
-	return spCred
+	return spCred, nil
 }
