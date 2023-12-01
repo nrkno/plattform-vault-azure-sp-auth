@@ -1,0 +1,1 @@
+# plattform-vault-azure-sp-auth
