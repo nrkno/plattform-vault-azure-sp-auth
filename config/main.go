@@ -2,7 +2,7 @@ package config
 
 import (
 	"encoding/json"
-	"log/syslog"
+	"log"
 	"net/http"
 	"time"
 
@@ -23,7 +23,7 @@ type ReadVaultPathOptions struct {
 	// The duration to wait before next retry (default 3 * time.Second)
 	RetryTime *time.Duration
 	// Logger for calling Warn(err) fails. Last fail will be returned as error
-	Logger *syslog.Writer
+	Logger *log.Logger
 }
 
 func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVaultPathOptions) (*config, error) {
@@ -50,8 +50,8 @@ func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVault
 	var secret *vault.Secret
 	for i := 0; i <= *opts.RetryCount; i++ {
 		secret, err = vaultClient.Logical().Read(path)
-		if err != nil && opts.Logger != nil {
-			opts.Logger.Err(err.Error())
+		if err != nil {
+			opts.Logger.Fatal(err.Error())
 			time.Sleep(*opts.RetryTime)
 		} else {
 			break
