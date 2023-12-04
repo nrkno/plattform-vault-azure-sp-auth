@@ -44,11 +44,7 @@ func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVault
 		return nil, err
 	}
 
-	if opts != nil {
-		fmt.Println("DEBUG: opts.Logger is not nil")
-	} else {
-		fmt.Println("DEBUG: opts.Logger is nil: ", opts)
-	}
+	fmt.Println("DEBUG: " + vaultAddress + ", " + path)
 
 	var secret *vault.Secret
 	for i := 0; i <= *opts.RetryCount; i++ {
