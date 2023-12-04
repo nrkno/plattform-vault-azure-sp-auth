@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -45,6 +46,12 @@ func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVault
 	vaultClient, err := vault.NewClient(&vault.Config{Address: vaultAddress, HttpClient: httpClient})
 	if err != nil {
 		return nil, err
+	}
+
+	if opts != nil {
+		fmt.Println("DEBUG: opts.Logger is not nil")
+	} else {
+		fmt.Println("DEBUG: opts.Logger is nil: ", opts)
 	}
 
 	var secret *vault.Secret
