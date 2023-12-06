@@ -1,8 +1,8 @@
 package models
 
-type AzureConfig struct {
-	ServicePrincipalPath string `json:"SERVICE_PRINCIPAL_PATH"`
-	TenantID             string `json:"TENANT_ID"`
+type VaultConfig struct {
+	VaultAddress         string
+	VaultAzureConfigPath string
 }
 
 type AzureCredentials struct {

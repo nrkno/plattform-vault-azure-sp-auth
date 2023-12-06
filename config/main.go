@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/nrkno/plattform-vault-azure-sp-auth/models"
 	"github.com/nrkno/plattform-vault-azure-sp-auth/utils"
 
 	vault "github.com/hashicorp/vault/api"
@@ -23,7 +24,7 @@ type ReadVaultPathOptions struct {
 	RetryTime *time.Duration
 }
 
-func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVaultPathOptions) (*config, error) {
+func ReadVaultPath[config any](vaultCfg models.VaultConfig, opts *ReadVaultPathOptions) (*config, error) {
 	if opts == nil {
 		opts = &DefaultReadVaultPathOptions
 	} else {
@@ -39,16 +40,16 @@ func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVault
 		Timeout: 10 * time.Second,
 	}
 
-	vaultClient, err := vault.NewClient(&vault.Config{Address: vaultAddress, HttpClient: httpClient})
+	vaultClient, err := vault.NewClient(&vault.Config{Address: vaultCfg.VaultAddress, HttpClient: httpClient})
 	if err != nil {
 		return nil, err
 	}
 
-	fmt.Println("DEBUG: " + vaultAddress + ", " + path)
+	fmt.Println("DEBUG: " + vaultCfg.VaultAddress + ", " + vaultCfg.VaultAzureConfigPath)
 
 	var secret *vault.Secret
 	for i := 0; i <= *opts.RetryCount; i++ {
-		secret, err = vaultClient.Logical().Read(path)
+		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureConfigPath)
 		if err != nil {
 			time.Sleep(*opts.RetryTime)
 		} else {
@@ -57,7 +58,7 @@ func ReadVaultPath[config any](vaultAddress string, path string, opts *ReadVault
 	}
 
 	if secret == nil {
-		secret, err = vaultClient.Logical().Read(path)
+		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureConfigPath)
 		if err != nil {
 			return nil, err
 		}
