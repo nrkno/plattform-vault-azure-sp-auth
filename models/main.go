@@ -1,8 +1,8 @@
 package models
 
 type VaultConfig struct {
-	VaultAddress         string
-	VaultAzureConfigPath string
+	VaultAddress                   string
+	VaultAzureRolesCredentialsPath string
 }
 
 type AzureCredentials struct {

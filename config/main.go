@@ -45,11 +45,11 @@ func ReadVaultPath[config any](vaultCfg models.VaultConfig, opts *ReadVaultPathO
 		return nil, err
 	}
 
-	fmt.Println("DEBUG: " + vaultCfg.VaultAddress + ", " + vaultCfg.VaultAzureConfigPath)
+	fmt.Println("DEBUG: " + vaultCfg.VaultAddress + ", " + vaultCfg.VaultAzureRolesCredentialsPath)
 
 	var secret *vault.Secret
 	for i := 0; i <= *opts.RetryCount; i++ {
-		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureConfigPath)
+		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureRolesCredentialsPath)
 		if err != nil {
 			time.Sleep(*opts.RetryTime)
 		} else {
@@ -58,7 +58,7 @@ func ReadVaultPath[config any](vaultCfg models.VaultConfig, opts *ReadVaultPathO
 	}
 
 	if secret == nil {
-		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureConfigPath)
+		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureRolesCredentialsPath)
 		if err != nil {
 			return nil, err
 		}
