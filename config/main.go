@@ -2,7 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -44,8 +43,6 @@ func ReadVaultPath[config any](vaultCfg models.VaultConfig, opts *ReadVaultPathO
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println("DEBUG: " + vaultCfg.VaultAddress + ", " + vaultCfg.VaultAzureRolesCredentialsPath)
 
 	var secret *vault.Secret
 	for i := 0; i <= *opts.RetryCount; i++ {

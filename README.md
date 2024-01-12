@@ -32,3 +32,4 @@ vault.hashicorp.com/agent-inject: "true"
 vault.hashicorp.com/agent-init-first: "true"
 vault.hashicorp.com/role: "your-role-here"
 ```
+You need to have this *not* be set, as it the vault agent needs to be running in the pod: `vault.hashicorp.com/agent-pre-populate-only: "true"`
