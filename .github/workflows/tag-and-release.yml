@@ -1,0 +1,11 @@
+on:
+  push:
+    paths-ignore:
+    - '**/.github/**'
+    - '**README.md'
+    branches:
+      - main
+
+jobs:
+  release:
+    uses: nrkno/github-workflow-semantic-release/.github/workflows/workflow.yaml@9b92529c6154dd7c319bafe9e4dcb56568259d1a # v5.1.0
