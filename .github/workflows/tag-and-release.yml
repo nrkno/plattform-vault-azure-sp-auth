@@ -5,6 +5,7 @@ on:
     - '**README.md'
     branches:
       - main
+  workflow_dispatch: 
 
 jobs:
   release:
