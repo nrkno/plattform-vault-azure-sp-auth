@@ -33,7 +33,7 @@
       "prBodyNotes": [
         "⚠️ Release timestamp support for Docker is only supported on Docker Hub, timestamp is set to optional for this update."
       ],
-      "minimumReleaseAgeBehavior": "timestamp-optional",
+      "minimumReleaseAgeBehaviour": "timestamp-optional",
       "minimumReleaseAge": "7 days"
     },
     {
@@ -47,7 +47,7 @@
       "prBodyNotes": [
         "⚠️ Release timestamp support is not available for this update type, timestamp is set to optional for this update."
       ],
-      "minimumReleaseAgeBehavior": "timestamp-optional"
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
     },
     {
       "matchUpdateTypes": ["digest", "pin", "pinDigest", "replacement"],
