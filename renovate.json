@@ -31,7 +31,6 @@
   "packageRules": [
     {
       "matchDatasources": ["golang-version"],
-      "matchUpdateTypes": ["major"],
       "minimumReleaseAge": "14 days"
     },
     {
