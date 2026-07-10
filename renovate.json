@@ -8,5 +8,18 @@
   "minimumReleaseAge": "14 days",
   "labels": ["dependencies"],
   "schedule": ["after 8am and before 4pm every weekday"],
-  "gitIgnoredAuthors": ["terraform-consumer[bot]", "bulldozer[bot]"]
+  "gitIgnoredAuthors": ["terraform-consumer[bot]", "bulldozer[bot]"],
+  "packageRules": [
+    {
+      "description": "Enable updates for indirect Go dependencies",
+      "matchManagers": ["gomod"],
+      "matchDepTypes": ["indirect"],
+      "enabled": true
+    },
+    {
+      "description": "Allow Go directive major version updates",
+      "matchDatasources": ["golang-version"],
+      "rangeStrategy": "bump"
+    }
+  ]
 }
