@@ -1,39 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "ignorePresets": ["security:minimumReleaseAgeNpm"],
+  "extends": [
+    "config:best-practices", // https://docs.renovatebot.com/upgrade-best-practices/#use-the-configbest-practices-preset
+    "mergeConfidence:all-badges"
+  ],
   "timezone": "Europe/Oslo",
   "minimumReleaseAge": "14 days",
   "labels": ["dependencies"],
   "schedule": ["after 8am and before 4pm every weekday"],
-  "packageRules": [
-    {
-      "matchDatasources": ["golang-version"],
-      "minimumReleaseAge": "14 days"
-    },
-    {
-      "matchUpdateTypes": ["digest", "pin", "pinDigest", "replacement"],
-      "addLabels": ["digest"]
-    },
-    {
-      "matchPackageNames": ["github-actions"],
-      "matchDatasources": ["github-tags"],
-      "matchFileNames": ["\\.github\\/workflows\\/.*"],
-      "commitMessagePrefix": "ci(no-release): ",
-      "commitMessageAction": "bump",
-      "commitMessageTopic": "{{depName}} from {{currentVersion}} to {{newVersion}}"
-    },
-    {
-      "matchUpdateTypes": ["patch"],
-      "addLabels": ["patch"]
-    },
-    {
-      "matchUpdateTypes": ["minor"],
-      "addLabels": ["minor"]
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "addLabels": ["major"]
-    }
-  ],
   "gitIgnoredAuthors": ["terraform-consumer[bot]", "bulldozer[bot]"]
 }
