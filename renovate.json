@@ -30,26 +30,9 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "description": "Docker updates from other registries than Docker Hub does not support release timestamps.",
-      "prBodyNotes": [
-        "⚠️ Release timestamp support for Docker is only supported on Docker Hub, timestamp is set to optional for this update."
-      ],
-      "minimumReleaseAgeBehaviour": "timestamp-optional",
-      "minimumReleaseAge": "7 days"
-    },
-    {
-      "description": "Lockfile, digest, pin and replacement updates does not support release timestamps.",
-      "matchUpdateTypes": [
-        "lockFileMaintenance",
-        "digest",
-        "pin",
-        "replacement"
-      ],
-      "prBodyNotes": [
-        "⚠️ Release timestamp support is not available for this update type, timestamp is set to optional for this update."
-      ],
-      "minimumReleaseAgeBehaviour": "timestamp-optional"
+      "matchDatasources": ["golang-version"],
+      "matchUpdateTypes": ["major"],
+      "minimumReleaseAge": "14 days"
     },
     {
       "matchUpdateTypes": ["digest", "pin", "pinDigest", "replacement"],
