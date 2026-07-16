@@ -5,7 +5,7 @@ go 1.26.4
 require github.com/hashicorp/vault/api v1.23.0
 
 require (
-	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
+	github.com/cenkalti/backoff/v7 v7.0.0 // indirect
 	github.com/cenkalti/backoff/v7 v7.0.0 // indirect
 	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
