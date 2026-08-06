@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -58,6 +59,9 @@ func ReadVaultPath[config any](vaultCfg models.VaultConfig, opts *ReadVaultPathO
 		secret, err = vaultClient.Logical().Read(vaultCfg.VaultAzureRolesCredentialsPath)
 		if err != nil {
 			return nil, err
+		}
+		if secret == nil {
+			return nil, fmt.Errorf("vault path %q returned no secret", vaultCfg.VaultAzureRolesCredentialsPath)
 		}
 	}
 
