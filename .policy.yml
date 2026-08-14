@@ -1,4 +1,4 @@
 ---
 remote: nrkno/nrk-bot-configs
-path: plattform/utvikleropplevelse/policy-bot/policy-bot-require-review-except.yaml
+path: plattform/utvikleropplevelse/policy-bot/policy-bot.yaml
 ref: main
