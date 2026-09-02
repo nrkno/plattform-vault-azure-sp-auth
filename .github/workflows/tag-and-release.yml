@@ -9,4 +9,4 @@ on:
 
 jobs:
   release:
-    uses: nrkno/github-workflow-semantic-release/.github/workflows/workflow.yaml@b4307e8eabb05c28a06b30028f9c1e2f9e752e6d # v5.1.2
+    uses: nrkno/github-workflow-semantic-release/.github/workflows/workflow.yaml@6a8585e39eabcb53cdbdebfcc76eb9672199089e # v5.1.5
