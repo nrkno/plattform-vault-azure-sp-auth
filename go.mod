@@ -1,6 +1,6 @@
 module github.com/nrkno/plattform-vault-azure-sp-auth
 
-go 1.26.5
+go 1.27.0
 
 require github.com/hashicorp/vault/api v1.23.0
 
